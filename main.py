@@ -14,9 +14,6 @@ erros_endpoints = [0 * tamanho for tamanho in range(len(endpoints))]
 def sucesso(requisicao):
     return requisicao > 199 and requisicao < 300
 
-def maior_valor_erros():
-    return max(erros_endpoints)
-
 def get_index_mais_erros():
     index_maior_valor_erros = 0
 
