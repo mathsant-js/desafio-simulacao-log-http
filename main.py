@@ -29,11 +29,26 @@ def get_index_mais_erros():
 def calcular_porcentagem_sucesso(sucessos, index):
     return (sucessos * 100) / len(status[index]) 
 
-def calcular_requisicoes():
+def exibir_classificacao_endpoint(porcentagem_sucesso, erro_sucessivo):
+    if erro_sucessivo >= 2:
+        return "CRÍTICO"
+    
+    if porcentagem_sucesso > 80:
+        return "ESTÁVEL"
+    
+    else:
+        return "INSTÁVEL"
+
+def percorrer_requisicoes():
     erro_sucessivo_endpoint = 0
     porcentagem_sucesso = 0
 
+    print()
+    print("==== LOG ENDPOINTS ====")
+
     for endpoint_index, endpoint in enumerate(status):
+        print(f"ENDPOINT '{endpoints[endpoint_index]}'")
+        
         erro_sucessivo_endpoint = 0
         soma_sucesso_endpoint = 0
         soma_erros_endpoint = 0
@@ -49,14 +64,15 @@ def calcular_requisicoes():
 
                 erros_endpoints[endpoint_index] += soma_erros_endpoint
 
-                if erro_sucessivo_endpoint == 2:
-                    print(f"O endpoint {endpoints[endpoint_index]} teve dois erros seguidos")
+        print(f"Erros consecutivos: {erro_sucessivo_endpoint}")
 
         porcentagem_sucesso = calcular_porcentagem_sucesso(soma_sucesso_endpoint, endpoint_index)
 
-        print(f"Porcentagem de sucesso do endpoint: {endpoints[endpoint_index]}")
-        print(f"{porcentagem_sucesso}%")
+        print(f"Porcentagem de sucesso: {porcentagem_sucesso}%")
+        print(f"Classificação do Endpoint: {exibir_classificacao_endpoint(porcentagem_sucesso, erro_sucessivo_endpoint)}")
+        print()
 
+    print("==== ENDPOINT COM MAIS ERROS ====")
     print(f"O endpoint com mais erros é o {endpoints[get_index_mais_erros()]}")
 
-calcular_requisicoes()
+percorrer_requisicoes()
