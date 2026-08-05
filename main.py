@@ -80,5 +80,6 @@ def percorrer_requisicoes() -> None:
     print("==== ENDPOINT COM MAIS ERROS ====")
     print(f"ENDPOINT: '{endpoints[get_index_mais_erros()]}'")
     print(f"Quantidade de erros: {max(erros_endpoints)}")
+    print()
 
 percorrer_requisicoes()
