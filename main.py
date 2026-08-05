@@ -12,9 +12,24 @@ status: list[list[int]] = [
 erros_endpoints: list[int] = [0 * tamanho for tamanho in range(len(endpoints))]
 
 def sucesso(requisicao: int) -> bool:
+    """Calcula se uma requisição foi bem sucedida
+
+    Args:
+        requisicao (int): requisição de um endpoint
+
+    Returns:
+        bool: Verdadeiro para requisição bem sucedida
+    """
+    
     return requisicao > 199 and requisicao < 300
 
 def get_index_mais_erros() -> int:
+    """Captura o index do endpoint com mais erros
+
+    Returns:
+        int: index do endpoint com mais erros
+    """
+    
     index_maior_valor_erros: int = 0
 
     for i in range(len(erros_endpoints)):
@@ -27,21 +42,41 @@ def get_index_mais_erros() -> int:
     return index_maior_valor_erros
 
 def calcular_porcentagem_sucesso(sucessos: int, index: int) -> float:
+    """Calcula a porcentagem de sucesso das requisições bem sucedidas do endpoint
+
+    Args:
+        sucessos (int): quantidade de requisições bem sucedidas de um endpoint
+        index (int): index do endpoint
+
+    Returns:
+        float: porcentagem de requisições bem sucedidas de um endpoint
+    """
+    
     return (sucessos * 100) / len(status[index]) 
 
 def exibir_classificacao_endpoint(porcentagem_sucesso: float, erro_sucessivo: int) -> str:
+    """Calcula e retorna a classificação do endpoint
+
+    Args:
+        porcentagem_sucesso (float): porcentagem de sucesso das requisições do endpoint
+        erro_sucessivo (int): quantidade de erros sucessivos
+
+    Returns:
+        str: classificação baseada na quantidade de erros e porcentagem de sucesso
+    """
+    
     if erro_sucessivo >= 2:
         return "CRÍTICO"
     
     if porcentagem_sucesso > 80:
         return "ESTÁVEL"
     
-    else:
-        return "INSTÁVEL"
+    return "INSTÁVEL"
 
 def percorrer_requisicoes() -> None:
+    """Percorre as requisições dos endpoints"""
+    
     erro_sucessivo_endpoint: int = 0
-    porcentagem_sucesso: int = 0
 
     print()
     print("==== LOG ENDPOINTS ====")
