@@ -17,7 +17,6 @@ def sucesso(requisicao):
 def get_index_mais_erros():
     index_maior_valor_erros = 0
 
-
     for i in range(len(erros_endpoints)):
         maior_valor = erros_endpoints[0]
 
@@ -36,11 +35,11 @@ def calcular_requisicoes():
 
     for endpoint_index, endpoint in enumerate(status):
         erro_sucessivo_endpoint = 0
+        soma_sucesso_endpoint = 0
+        soma_erros_endpoint = 0
 
         for requisicao in endpoint:
-            soma_sucesso_endpoint = 0
-            soma_erros_endpoint = 0
-
+            
             if sucesso(requisicao):
                 soma_sucesso_endpoint += 1
 
@@ -53,7 +52,7 @@ def calcular_requisicoes():
                 if erro_sucessivo_endpoint == 2:
                     print(f"O endpoint {endpoints[endpoint_index]} teve dois erros seguidos")
 
-            porcentagem_sucesso = calcular_porcentagem_sucesso(soma_sucesso_endpoint, endpoint_index)
+        porcentagem_sucesso = calcular_porcentagem_sucesso(soma_sucesso_endpoint, endpoint_index)
 
         print(f"Porcentagem de sucesso do endpoint: {endpoints[endpoint_index]}")
         print(f"{porcentagem_sucesso}%")
