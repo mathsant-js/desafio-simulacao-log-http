@@ -125,6 +125,6 @@ Desenvolvimento da lógica, implementação das funcionalidades, organização d
 
 ## Licença
 
-Este projeto está disponível sob a Licença MIT.
+Este projeto está disponível sob a [Licença MIT](LICENSE).
 
 Sinta-se à vontade para estudar o código, utilizá-lo como referência e adaptá-lo para fins educacionais.
